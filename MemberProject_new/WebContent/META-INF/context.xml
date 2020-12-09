@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- META-INF: 프로젝트와 관련된 설정파일을 META-INF 폴더 밑에 두고있다.-->
+<!-- Servers의 context.xml에 적용시키면 워크스페이스 전 프로젝트에 적용된다. -->
+<!-- META-INF의 context.xml에 적용시키면 소속 프로젝트에 적용된다. -->
+<Context>
+	<Resource name="jdbc/OracleDB"
+		 auth="Container"
+            type="javax.sql.DataSource"
+            username="jsp"
+            password="jsp"
+            driverClassName="oracle.jdbc.driver.OracleDriver"
+            factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
+            url="jdbc:oracle:thin:@localhost:1521:orcl"
+            maxTotal="500"
+            maxIdle="100"	
+	/>
+</Context>
+
+<!-- 위 내용은 tomcat apache documentaion 9에서 JNDI에서 확인 가능 -->
+<!-- maxIdle: ConnectionPool에 반납할 때 최대로 유지될 수 있는 커넥션 개수 -->
+<!-- maxTotal: 동시에 사용할 수 있는 최대 커넥션 개수 -->
