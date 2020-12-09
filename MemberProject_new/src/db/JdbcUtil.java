@@ -2,6 +2,7 @@ package db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.naming.Context;
@@ -55,7 +56,7 @@ public class JdbcUtil {
 		return null;
 	}
 	
-	public void close(Connection conn) {
+	public static void close(Connection conn) {
 		try {
 			conn.close();
 		} catch(SQLException e) {
@@ -64,7 +65,7 @@ public class JdbcUtil {
 		
 	}
 	
-	public void close(Connection conn, PreparedStatement pstmt) {
+	public static void close(Connection conn, PreparedStatement pstmt) {
 		try {
 			conn.close();
 			pstmt.close();
@@ -73,7 +74,17 @@ public class JdbcUtil {
 		}
 	}
 	
-	public void rollback(Connection conn) {
+	public static void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
+		try {
+			conn.close();
+			pstmt.close();
+			rs.close();
+		} catch(SQLException e) {
+			System.out.println("conn, pstmt close 실패");
+		}
+	}
+	
+	public static void rollback(Connection conn) {
 		try {
 			conn.rollback();
 		} catch(SQLException e) {
